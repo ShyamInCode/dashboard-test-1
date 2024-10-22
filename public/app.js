@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     loginBtn.addEventListener('click', () => {
-        window.location.href = 'https://dashboard-test-0y61.onrender.com/login';
+        window.location.href = 'https://dashboard-test-1.onrender.com/login';
     });
 
     getTokenBtn.addEventListener('click', () => {
