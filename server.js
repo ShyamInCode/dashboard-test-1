@@ -14,7 +14,7 @@ app.use(express.static('public'));
 
 
 
-const gAccess_token = null;
+let gAccess_token = null;
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views')); // Set the views directory
