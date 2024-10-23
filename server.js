@@ -4,6 +4,7 @@ const cors = require('cors');
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
 const path = require('path');
+const XMLParser = require('fast-xml-parser').XMLParser;
 
 const app = express();
 const port = process.env.PORT || 3000;
