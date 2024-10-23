@@ -166,7 +166,7 @@ app.get('/debug-env', (req, res) => {
 
 app.get('/dashboard', async (req, res) => {
   // Assuming you have a way to store the access token, e.g., in session or a global variable
-  const accessToken = req.session.accessToken; // Adjust this based on your implementation
+  const accessToken = gAccess_token; // Adjust this based on your implementation
 
   if (!accessToken) {
     return res.status(401).send('Unauthorized: No access token found');
