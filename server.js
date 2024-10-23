@@ -134,7 +134,7 @@ app.get('/oauth2/callback', async (req, res) => {
   try {
     const response = await axios.post(process.env.TOKEN_URL, {
       grant_type: 'authorization_code',
-      code,
+      code: code,
       client_id: process.env.CLIENT_ID,
       client_secret: process.env.CLIENT_SECRET,
       redirect_uri: process.env.REDIRECT_URI
@@ -152,7 +152,7 @@ app.get('/oauth2/callback', async (req, res) => {
 
   try {
     const salesforceData = await getSalesforceData(accessToken);
-    const extractedData = extractRelevantData(salesforceData);
+    const extractedData = await extractRelevantData(salesforceData);
 
     // Prepare data for rendering (only Business Unit Name and Status)
     const renderData = extractedData.map(item => ({
@@ -183,11 +183,6 @@ app.get('/debug-env', (req, res) => {
     AUTH_URL: process.env.AUTH_URL,
     CLIENT_ID: process.env.CLIENT_ID
   });
-});
-
-app.get('/dashboard', async (req, res) => {
-  // Assuming you have a way to store the access token, e.g., in session or a global variable
-  
 });
 
 app.listen(port, () => {
