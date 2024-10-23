@@ -183,7 +183,7 @@ app.get('/dashboard', async (req, res) => {
     }));
 
     // Render the dashboard EJS file with the extracted data
-    res.render('dashboard', { data: renderData });
+    res.render('data', { data: renderData });
   } catch (error) {
     console.error('Error fetching data for dashboard:', error);
     res.status(500).send('Error fetching data for dashboard');
