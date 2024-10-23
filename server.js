@@ -144,29 +144,7 @@ app.get('/oauth2/callback', async (req, res) => {
     gAccess_token = response.data.access_token; // Ensure you have session middleware set up
 
     // Redirect to the dashboard
-    res.redirect('/dashboard');
-  } catch (error) {
-    console.error('Error getting token:', error.response ? error.response.data : error.message);
-    res.status(500).send('Authentication failed');
-  }
-});
-
-app.get('/logout', (req, res) => {
-  // Clear any stored tokens or sessions here
-  res.redirect('/');
-});
-
-app.get('/debug-env', (req, res) => {
-  res.json({
-    REDIRECT_URI: process.env.REDIRECT_URI,
-    AUTH_URL: process.env.AUTH_URL,
-    CLIENT_ID: process.env.CLIENT_ID
-  });
-});
-
-app.get('/dashboard', async (req, res) => {
-  // Assuming you have a way to store the access token, e.g., in session or a global variable
-  const accessToken = gAccess_token; // Adjust this based on your implementation
+    const accessToken = gAccess_token; // Adjust this based on your implementation
 
   if (!accessToken) {
     return res.status(401).send('Unauthorized: No access token found');
@@ -188,6 +166,28 @@ app.get('/dashboard', async (req, res) => {
     console.error('Error fetching data for dashboard:', error);
     res.status(500).send('Error fetching data for dashboard');
   }
+  } catch (error) {
+    console.error('Error getting token:', error.response ? error.response.data : error.message);
+    res.status(500).send('Authentication failed');
+  }
+});
+
+app.get('/logout', (req, res) => {
+  // Clear any stored tokens or sessions here
+  res.redirect('/');
+});
+
+app.get('/debug-env', (req, res) => {
+  res.json({
+    REDIRECT_URI: process.env.REDIRECT_URI,
+    AUTH_URL: process.env.AUTH_URL,
+    CLIENT_ID: process.env.CLIENT_ID
+  });
+});
+
+app.get('/dashboard', async (req, res) => {
+  // Assuming you have a way to store the access token, e.g., in session or a global variable
+  
 });
 
 app.listen(port, () => {
